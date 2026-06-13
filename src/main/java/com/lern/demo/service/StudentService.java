@@ -32,7 +32,9 @@ public class StudentService {
     }
 
     public Student update(long id, Student student){
-        Student studentData = studentRepository.findById(id).get();
+        Optional<Student> studentDataOpt = studentRepository.findById(id);
+        Student studentData = studentDataOpt.get();
+        
         if(student.getFirstname() != null && !student.getFirstname().isEmpty() && !student.getFirstname().equals("")){
             studentData.setFirstname(student.getFirstname());
         }
